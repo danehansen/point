@@ -1,0 +1,33 @@
+{
+  "name": "@danehansen/point",
+  "version": "0.1.3",
+  "description": "point",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "nyc mocha --compilers js:babel-register",
+    "coverage-report": "nyc --reporter=html mocha --compilers js:babel-register",
+    "test": "mocha --compilers js:babel-register -w",
+    "prepublish": "babel src/point.js --out-file index.js"
+  },
+  "keywords": [
+    "point"
+  ],
+  "author": "Dane Hansen <dane@danehansen.com> (http://www.danehansen.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2"
+  },
+  "dependencies": {
+    "@danehansen/math": "latest"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/danehansen/Point"
+  }
+}
