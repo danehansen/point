@@ -1,13 +1,14 @@
 {
   "name": "@danehansen/point",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "point",
   "main": "index.js",
   "scripts": {
     "coverage": "nyc mocha --compilers js:babel-register",
     "coverage-report": "nyc --reporter=html mocha --compilers js:babel-register",
-    "test": "mocha --compilers js:babel-register -w",
-    "prepublish": "babel src/point.js --out-file index.js"
+    "min": "babel src/danehansen-Point.js --out-file danehansen-Point.min.js && webpack danehansen-Point.min.js danehansen-Point.min.js && uglifyjs danehansen-Point.min.js -o danehansen-Point.min.js -c -m",
+    "prepublish": "npm run min && babel src/Point.js --out-file index.js",
+    "test": "mocha --compilers js:babel-register -w"
   },
   "keywords": [
     "point"
@@ -21,7 +22,9 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "nyc": "^10.1.2"
+    "nyc": "^10.1.2",
+    "uglify-js": "^2.7.5",
+    "webpack": "^1.14.0"
   },
   "dependencies": {
     "@danehansen/math": "latest"

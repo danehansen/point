@@ -1,4 +1,4 @@
-import { round } from '@danehansen/math'
+const { round } = (typeof require !== "undefined" ? require('@danehansen/math') : window.danehansen.math)
 
 class Point {
   static distance(a, b) {

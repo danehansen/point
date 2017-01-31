@@ -11,11 +11,22 @@ The Point object represents a location in a two-dimensional coordinate system, w
 
 ##Usage##
 
+As a module:
+
     import Point from '@danehansen/point';
 
     var p = new Point(50, 75);
     p.setTo(25, 75);
     var d = Point.distace(p, new Point(5, 20));
+
+In your browser:
+
+    <script src='danehansen-Point.min.js'></script>
+    <script>
+      var Point = window.danehansen.Point;
+      var p = new Point(3, 4);
+      p.add(new Point(5, 6));
+    </script>
 
 ##Public Static Methods##
 

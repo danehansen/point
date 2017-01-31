@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,23 +6,24 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _math = require('@danehansen/math');
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _ref = typeof require !== "undefined" ? require('@danehansen/math') : window.danehansen.math,
+    _round = _ref.round;
 
 var Point = function () {
   _createClass(Point, null, [{
-    key: 'distance',
+    key: "distance",
     value: function distance(a, b) {
       return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
     }
   }, {
-    key: 'interpolate',
+    key: "interpolate",
     value: function interpolate(start, end, amount) {
       return new Point(start.x + (end.x - start.x) * amount, start.y + (end.y - start.y) * amount);
     }
   }, {
-    key: 'intersection',
+    key: "intersection",
     value: function intersection(startA, endA, startB, endB) {
       var x1 = startA.x;
       var y1 = startA.y;
@@ -45,12 +46,12 @@ var Point = function () {
       return new Point((f * d - a * g) / e, (f * b - c * g) / e);
     }
   }, {
-    key: 'polar',
+    key: "polar",
     value: function polar(len, angle) {
       return new Point(Math.cos(angle) * len, Math.sin(angle) * len);
     }
   }, {
-    key: 'randomPointInCircle',
+    key: "randomPointInCircle",
     value: function randomPointInCircle(center, radius) {
       var random = {};
       do {
@@ -60,11 +61,11 @@ var Point = function () {
       return random;
     }
   }, {
-    key: 'round',
+    key: "round",
     value: function round(point, increment) {
       return {
-        x: (0, _math.round)(point.x, increment),
-        y: (0, _math.round)(point.y, increment)
+        x: _round(point.x, increment),
+        y: _round(point.y, increment)
       };
     }
   }]);
@@ -80,64 +81,64 @@ var Point = function () {
   }
 
   _createClass(Point, [{
-    key: 'add',
+    key: "add",
     value: function add(point) {
       this.offset(point.x, point.y);
     }
   }, {
-    key: 'angle',
+    key: "angle",
     value: function angle() {
       return Math.atan2(this.y, this.x);
     }
   }, {
-    key: 'clone',
+    key: "clone",
     value: function clone() {
       return new Point(this.x, this.y);
     }
   }, {
-    key: 'copyFrom',
+    key: "copyFrom",
     value: function copyFrom(point) {
       this.setTo(point.x, point.y);
     }
   }, {
-    key: 'equals',
+    key: "equals",
     value: function equals(point) {
       return this.x === point.x && this.y === point.y;
     }
   }, {
-    key: 'length',
+    key: "length",
     value: function length() {
       return Point.distance(this, new Point());
     }
   }, {
-    key: 'normalize',
+    key: "normalize",
     value: function normalize(thickness) {
       var ratio = thickness / this.length();
       this.x *= ratio;
       this.y *= ratio;
     }
   }, {
-    key: 'offset',
+    key: "offset",
     value: function offset(x, y) {
       this.x += x;
       this.y += y;
     }
   }, {
-    key: 'setTo',
+    key: "setTo",
     value: function setTo(x, y) {
       this.x = x;
       this.y = y;
     }
   }, {
-    key: 'subtract',
+    key: "subtract",
     value: function subtract(point) {
       this.x -= point.x;
       this.y -= point.y;
     }
   }, {
-    key: 'toString',
+    key: "toString",
     value: function toString() {
-      return '{x: ' + this.x + ', y: ' + this.y + '}';
+      return "{x: " + this.x + ", y: " + this.y + "}";
     }
   }]);
 
