@@ -1,4 +1,4 @@
-const { round } = (typeof require !== "undefined" ? require('@danehansen/math') : window.danehansen.math)
+const { round } = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math') : (((window || {}).danehansen || {}).math || {})
 
 class Point {
   static distance(a, b) {

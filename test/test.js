@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import * as math from '@danehansen/math'
-import Point from '../src/point'
+import Point from '../src/Point'
 
 describe('constructor', function() {
   it('initiates x and y as 0 with no arguments', function() {

@@ -4,11 +4,16 @@
   "description": "point",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --compilers js:babel-register -w",
     "coverage": "nyc mocha --compilers js:babel-register",
     "coverage-report": "nyc --reporter=html mocha --compilers js:babel-register",
-    "min": "babel src/danehansen-Point.js --out-file danehansen-Point.min.js && webpack danehansen-Point.min.js danehansen-Point.min.js && uglifyjs danehansen-Point.min.js -o danehansen-Point.min.js -c -m",
-    "prepublish": "npm run min && babel src/Point.js --out-file index.js",
-    "test": "mocha --compilers js:babel-register -w"
+
+    "_babel": "babel src/danehansen-Point.js --out-file danehansen-Point.min.js",
+    "_webpack": "webpack danehansen-Point.min.js danehansen-Point.min.js --define __BROWSER__=true",
+    "_uglify": "uglifyjs danehansen-Point.min.js -o danehansen-Point.min.js -c dead_code,unused -m",
+    "min": "npm run _babel && npm run _webpack && npm run _uglify",
+
+    "prepublish": "npm run min && babel src/Point.js --out-file index.js"
   },
   "keywords": [
     "point"
