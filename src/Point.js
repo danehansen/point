@@ -1,6 +1,6 @@
 const { round } = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math') : (((window || {}).danehansen || {}).math || {})
 
-class Point {
+export default class Point {
   static distance(a, b) {
   	return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
   }
@@ -57,54 +57,52 @@ class Point {
     this.y = y
   }
 
-  add(point) {
+  add = (point) => {
     this.offset(point.x, point.y)
   }
 
-  angle() {
+  angle = () => {
   	return Math.atan2(this.y, this.x)
   }
 
-  clone() {
+  clone = () => {
   	return new Point(this.x, this.y)
   }
 
-  copyFrom(point) {
+  copyFrom = (point) => {
     this.setTo(point.x, point.y)
   }
 
-  equals(point) {
+  equals = (point) => {
   	return this.x === point.x && this.y === point.y
   }
 
-  length() {
+  length = () => {
   	return Point.distance(this, new Point())
   }
 
-  normalize(thickness) {
+  normalize = (thickness) => {
   	const ratio = thickness / this.length()
   	this.x *= ratio
   	this.y *= ratio
   }
 
-  offset(x, y) {
+  offset = (x, y) => {
   	this.x += x
   	this.y += y
   }
 
-  setTo(x, y) {
+  setTo = (x, y) => {
   	this.x = x
   	this.y = y
   }
 
-  subtract(point) {
+  subtract = (point) => {
   	this.x -= point.x
   	this.y -= point.y
   }
 
-  toString() {
+  toString = () => {
   	return `{x: ${this.x}, y: ${this.y}}`
   }
 }
-
-export default Point

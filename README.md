@@ -1,15 +1,15 @@
-#Point#
+#Point
 
-__Class__ : public class Point  
-__Inheritance__ : Point > Object
+__Class__ : public class [Point](https://github.com/danehansen/Point)  
+__Inheritance__ : [Point](https://github.com/danehansen/Point) > Object
 
 The Point object represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis. Mostly based on the AS3 Point class, but with some added features/useless ones removed.
 
-##Installation##
+##Installation
 
 `npm install --save @danehansen/point`
 
-##Usage##
+##Usage
 
 As a module:
 
@@ -28,7 +28,7 @@ In your browser:
       p.add(new Point(5, 6));
     </script>
 
-##Public Static Methods##
+##Public Static Methods
 
 * __distance__(pt1:Point, pt2:Point):Number  
 [static] Returns the distance between pt1 and pt2.
@@ -43,14 +43,14 @@ In your browser:
 * __round__(v:Point, increment:Number):Point  
 [static] Returns a new point with its x and y values rounded to the nearest increment.
 
-##Public Properties##
+##Public Properties
 
 * __x__ : Number  
 The horizontal coordinate of the point.
 * __y__ : Number  
 The vertical coordinate of the point.
 
-##Public Methods##
+##Public Methods
 
 * __Point__(x:Number = 0, y:Number = 0)  
 Creates a new point.

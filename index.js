@@ -76,73 +76,66 @@ var Point = function () {
 
     _classCallCheck(this, Point);
 
+    _initialiseProps.call(this);
+
     this.x = x;
     this.y = y;
   }
 
-  _createClass(Point, [{
-    key: 'add',
-    value: function add(point) {
-      this.offset(point.x, point.y);
-    }
-  }, {
-    key: 'angle',
-    value: function angle() {
-      return Math.atan2(this.y, this.x);
-    }
-  }, {
-    key: 'clone',
-    value: function clone() {
-      return new Point(this.x, this.y);
-    }
-  }, {
-    key: 'copyFrom',
-    value: function copyFrom(point) {
-      this.setTo(point.x, point.y);
-    }
-  }, {
-    key: 'equals',
-    value: function equals(point) {
-      return this.x === point.x && this.y === point.y;
-    }
-  }, {
-    key: 'length',
-    value: function length() {
-      return Point.distance(this, new Point());
-    }
-  }, {
-    key: 'normalize',
-    value: function normalize(thickness) {
-      var ratio = thickness / this.length();
-      this.x *= ratio;
-      this.y *= ratio;
-    }
-  }, {
-    key: 'offset',
-    value: function offset(x, y) {
-      this.x += x;
-      this.y += y;
-    }
-  }, {
-    key: 'setTo',
-    value: function setTo(x, y) {
-      this.x = x;
-      this.y = y;
-    }
-  }, {
-    key: 'subtract',
-    value: function subtract(point) {
-      this.x -= point.x;
-      this.y -= point.y;
-    }
-  }, {
-    key: 'toString',
-    value: function toString() {
-      return '{x: ' + this.x + ', y: ' + this.y + '}';
-    }
-  }]);
-
   return Point;
 }();
+
+var _initialiseProps = function _initialiseProps() {
+  var _this = this;
+
+  this.add = function (point) {
+    _this.offset(point.x, point.y);
+  };
+
+  this.angle = function () {
+    return Math.atan2(_this.y, _this.x);
+  };
+
+  this.clone = function () {
+    return new Point(_this.x, _this.y);
+  };
+
+  this.copyFrom = function (point) {
+    _this.setTo(point.x, point.y);
+  };
+
+  this.equals = function (point) {
+    return _this.x === point.x && _this.y === point.y;
+  };
+
+  this.length = function () {
+    return Point.distance(_this, new Point());
+  };
+
+  this.normalize = function (thickness) {
+    var ratio = thickness / _this.length();
+    _this.x *= ratio;
+    _this.y *= ratio;
+  };
+
+  this.offset = function (x, y) {
+    _this.x += x;
+    _this.y += y;
+  };
+
+  this.setTo = function (x, y) {
+    _this.x = x;
+    _this.y = y;
+  };
+
+  this.subtract = function (point) {
+    _this.x -= point.x;
+    _this.y -= point.y;
+  };
+
+  this.toString = function () {
+    return '{x: ' + _this.x + ', y: ' + _this.y + '}';
+  };
+};
 
 exports.default = Point;

@@ -2,13 +2,19 @@ import { expect } from 'chai'
 import * as math from '@danehansen/math'
 import Point from '../src/Point'
 
+function equals(p1, p2) {
+  expect(p1.x).to.equal(p2.x)
+  expect(p1.y).to.equal(p2.y)
+}
+
 describe('constructor', function() {
   it('initiates x and y as 0 with no arguments', function() {
-    expect(new Point()).to.deep.equal({ x: 0, y: 0 })
+    const p = new Point()
+    equals(p, {x: 0, y: 0})
   })
 
   it('initiates x and y as arguments', function() {
-    expect(new Point(3, 5)).to.deep.equal({ x: 3, y: 5 })
+    equals(new Point(3, 5), { x: 3, y: 5 })
   })
 })
 
@@ -17,12 +23,12 @@ describe('add', function() {
     let a = new Point()
     let b = new Point(3, 5)
     a.add(b)
-    expect(a).to.deep.equal(b)
+    equals(a, b)
 
     a = new Point(-4, -3)
     b = new Point(1, 1)
     a.add(b)
-    expect(a).to.deep.equal({ x: -3, y: -2 })
+    equals(a, {x: -3, y: -2})
   })
 })
 
@@ -38,7 +44,7 @@ describe('angle', function() {
 describe('clone', function() {
   it('makes copy of self', function() {
     const a = new Point(Math.random(), Math.random())
-    expect(a.clone()).to.deep.equal(a)
+    equals(a.clone(), a)
     expect(a.clone()).to.not.equal(a)
   })
 })
@@ -48,7 +54,7 @@ describe('copyFrom', function() {
     const a = new Point(Math.random(), Math.random())
     const b = new Point(Math.random(), Math.random())
     a.copyFrom(b)
-    expect(a).to.deep.equal(b)
+    equals(a, b)
     expect(a).to.not.equal(b)
   })
 })
@@ -57,7 +63,7 @@ describe('equals', function() {
   it('finds when x and y are equal to another point', function() {
     const a = new Point(Math.random(), Math.random())
     const b = a.clone()
-    expect(a).to.deep.equal(b)
+    equals(a, b)
     expect(a).to.not.equal(b)
     expect(a.equals(b)).to.equal(true)
   })
@@ -84,19 +90,24 @@ describe('normalize', function() {
   it('scales length to equal a thickness', function() {
     let a = new Point(0, 2)
     a.normalize(3)
-    expect(a).to.deep.equal({ x: 0, y: 3 })
+    equals(a, {x: 0, y: 3})
+    expect(a.x).to.equal(0)
+    expect(a.y).to.equal(3)
 
     a = new Point(0, -2)
     a.normalize(4)
-    expect(a).to.deep.equal({ x: 0, y: -4 })
+    expect(a.x).to.equal(0)
+    expect(a.y).to.equal(-4)
 
     a = new Point(-2, 0)
     a.normalize(5)
-    expect(a).to.deep.equal({ x: -5, y: 0 })
+    expect(a.x).to.equal(-5)
+    expect(a.y).to.equal(0)
 
     a = new Point(2, 0)
     a.normalize(6)
-    expect(a).to.deep.equal({ x: 6, y: 0 })
+    expect(a.x).to.equal(6)
+    expect(a.y).to.equal(0)
   })
 })
 
@@ -104,11 +115,13 @@ describe('offset', function() {
   it('adds values onto self', function() {
     let a = new Point()
     a.offset(3, 5)
-    expect(a).to.deep.equal({ x: 3, y: 5 })
+    expect(a.x).to.equal(3)
+    expect(a.y).to.equal(5)
 
     a = new Point(-4, -3)
     a.offset(1, 1)
-    expect(a).to.deep.equal({ x: -3, y: -2 })
+    expect(a.x).to.equal(-3)
+    expect(a.y).to.equal(-2)
   })
 })
 
@@ -118,7 +131,9 @@ describe('setTo', function() {
     const x = Math.random()
     const y = Math.random()
     a.setTo(x, y)
-    expect(a).to.deep.equal({ x, y })
+
+    expect(a.x).to.equal(x)
+    expect(a.y).to.equal(y)
   })
 })
 
@@ -127,12 +142,12 @@ describe('subtract', function() {
     let a = new Point()
     let b = new Point(3, 5)
     a.subtract(b)
-    expect(a).to.deep.equal({ x: -3, y: -5 })
+    equals(a, {x: -3, y: -5})
 
     a = new Point(-4, -3)
     b = new Point(1, 1)
     a.subtract(b)
-    expect(a).to.deep.equal({ x: -5, y: -4 })
+    equals(a, {x: -5, y: -4})
   })
 })
 
@@ -154,7 +169,8 @@ describe('static distance', function() {
 
 describe('static interpolate', function() {
   it('finds interpolations between beginning and end points', function() {
-    expect(Point.interpolate({x: 0, y: 0}, {x: 0, y: 10}, 0.25)).to.deep.equal({x: 0, y: 2.5})
+    const p = Point.interpolate({x: 0, y: 0}, {x: 0, y: 10}, 0.25)
+    equals(p, {x: 0, y: 2.5})
   })
 })
 
@@ -164,7 +180,8 @@ describe('static intersection', function() {
     const endA = new Point(3, 3)
     const startB = new Point(1, 3)
     const endB = new Point(3, 1)
-    expect(Point.intersection(startA, endA, startB, endB)).to.deep.equal({ x: 2, y: 2 })
+    const p = Point.intersection(startA, endA, startB, endB)
+    equals(p, {x: 2, y: 2})
   })
 
   it('finds no intersection between two parallel lines', function() {
@@ -200,7 +217,7 @@ describe('static round', function() {
   it('makes a new point with values rounded to nearest increment', function() {
     const a = new Point(2.000001, 3.0000001)
     const b = Point.round(a, 0.0001)
-    expect(b).to.deep.equal(new Point(2, 3))
+    equals(b, {x: 2, y: 3})
   })
 })
 

@@ -1,6 +1,4 @@
 import Point from './index'
+import { putClassOnWindow } from '@danehansen/package-helpers'
 
-if (typeof window !== undefined) {
-  window.danehansen = window.danehansen || {}
-  window.danehansen.Point = Point
-}
+putClassOnWindow(Point, 'Point')
