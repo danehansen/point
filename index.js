@@ -82,6 +82,13 @@ var Point = function () {
     this.y = y;
   }
 
+  _createClass(Point, [{
+    key: 'length',
+    get: function get() {
+      return Point.distance(this, { x: 0, y: 0 });
+    }
+  }]);
+
   return Point;
 }();
 
@@ -108,12 +115,8 @@ var _initialiseProps = function _initialiseProps() {
     return _this.x === point.x && _this.y === point.y;
   };
 
-  this.length = function () {
-    return Point.distance(_this, new Point());
-  };
-
   this.normalize = function (thickness) {
-    var ratio = thickness / _this.length();
+    var ratio = thickness / _this.length;
     _this.x *= ratio;
     _this.y *= ratio;
   };

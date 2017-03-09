@@ -79,10 +79,10 @@ describe('equals', function() {
 
 describe('length', function() {
   it('finds distance to 0, 0', function() {
-    expect(new Point(0, 5).length()).to.equal(5)
-    expect(new Point(0, -5).length()).to.equal(5)
-    expect(new Point(5, 0).length()).to.equal(5)
-    expect(new Point(-5, 0).length()).to.equal(5)
+    expect(new Point(0, 5).length).to.equal(5)
+    expect(new Point(0, -5).length).to.equal(5)
+    expect(new Point(5, 0).length).to.equal(5)
+    expect(new Point(-5, 0).length).to.equal(5)
   })
 })
 

@@ -5,7 +5,7 @@
     <title>Point</title>
     <link href='https://danehansen.github.io/package-helpers/styles.css' rel='stylesheet' />
   </head>
-<body>
+  <body>
 <h1>Point</h1>
 
 <p><strong>Class</strong> : public class <a href="https://github.com/danehansen/Point">Point</a> <br />
@@ -58,6 +58,8 @@ var d = Point.distace(p, new Point(5, 20));
 <h2>Public Properties</h2>
 
 <ul>
+<li><strong>length</strong>() : Number <br />
+[read-only] Gets the length of the line segment from (0,0) to this point.</li>
 <li><strong>x</strong> : Number <br />
 The horizontal coordinate of the point.</li>
 <li><strong>y</strong> : Number <br />
@@ -79,8 +81,6 @@ Creates a copy of this Point object.</li>
 Copies all of the point data from the source Point object into the calling Point object.</li>
 <li><strong>equals</strong>(toCompare:Point):Boolean <br />
 Determines whether two points are equal.</li>
-<li><strong>length</strong>():Number <br />
-[read-only] Gets the length of the line segment from (0,0) to this point.</li>
 <li><strong>normalize</strong>(thicknes:Number) <br />
 Scales the line segment between (0,0) and the current point to a set length.</li>
 <li><strong>offset</strong>(dx:Number, dy:Number) <br />
@@ -92,5 +92,5 @@ Subtracts the coordinates of another point from the coordinates of this point to
 <li><strong>toString</strong>():String <br />
 Returns a string that contains the values of the x and y coordinates.</li>
 </ul>
-</body>
+  </body>
 </html>

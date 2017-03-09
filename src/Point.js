@@ -2,11 +2,11 @@ const { round } = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math
 
 export default class Point {
   static distance(a, b) {
-  	return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
+    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
   }
 
   static interpolate(start, end, amount) {
-  	return new Point(start.x + (end.x - start.x) * amount, start.y + (end.y - start.y) * amount)
+    return new Point(start.x + (end.x - start.x) * amount, start.y + (end.y - start.y) * amount)
   }
 
   static intersection(startA, endA, startB, endB) {
@@ -32,17 +32,17 @@ export default class Point {
   }
 
   static polar(len, angle) {
-  	return new Point(Math.cos(angle) * len, Math.sin(angle) * len)
+    return new Point(Math.cos(angle) * len, Math.sin(angle) * len)
   }
 
   static randomPointInCircle(center, radius) {
-  	const random = {}
-  	do {
-  		random.x = Math.random() * radius * 2 + center.x - radius
-  		random.y = Math.random() * radius * 2 + center.y - radius
-  	}
-  	while(Point.distance(random, center) > radius)
-  	return random
+    const random = {}
+    do {
+      random.x = Math.random() * radius * 2 + center.x - radius
+      random.y = Math.random() * radius * 2 + center.y - radius
+    }
+    while(Point.distance(random, center) > radius)
+    return random
   }
 
   static round(point, increment) {
@@ -62,11 +62,11 @@ export default class Point {
   }
 
   angle = () => {
-  	return Math.atan2(this.y, this.x)
+    return Math.atan2(this.y, this.x)
   }
 
   clone = () => {
-  	return new Point(this.x, this.y)
+    return new Point(this.x, this.y)
   }
 
   copyFrom = (point) => {
@@ -74,35 +74,35 @@ export default class Point {
   }
 
   equals = (point) => {
-  	return this.x === point.x && this.y === point.y
+    return this.x === point.x && this.y === point.y
   }
 
-  length = () => {
-  	return Point.distance(this, new Point())
+  get length() {
+    return Point.distance(this, { x: 0, y: 0 })
   }
 
   normalize = (thickness) => {
-  	const ratio = thickness / this.length()
-  	this.x *= ratio
-  	this.y *= ratio
+    const ratio = thickness / this.length
+    this.x *= ratio
+    this.y *= ratio
   }
 
   offset = (x, y) => {
-  	this.x += x
-  	this.y += y
+    this.x += x
+    this.y += y
   }
 
   setTo = (x, y) => {
-  	this.x = x
-  	this.y = y
+    this.x = x
+    this.y = y
   }
 
   subtract = (point) => {
-  	this.x -= point.x
-  	this.y -= point.y
+    this.x -= point.x
+    this.y -= point.y
   }
 
   toString = () => {
-  	return `{x: ${this.x}, y: ${this.y}}`
+    return `{x: ${this.x}, y: ${this.y}}`
   }
 }
