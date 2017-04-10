@@ -11,6 +11,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var _ref = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math') : ((window || {}).danehansen || {}).math || {},
     _round = _ref.round;
 
+var ORIGIN = { x: 0, y: 0 };
+
 var Point = function () {
   _createClass(Point, null, [{
     key: 'distance',
@@ -62,11 +64,10 @@ var Point = function () {
     }
   }, {
     key: 'round',
-    value: function round(point, increment) {
-      return {
-        x: _round(point.x, increment),
-        y: _round(point.y, increment)
-      };
+    value: function round(point) {
+      var increment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+      return new Point(_round(point.x, increment), _round(point.y, increment));
     }
   }]);
 
@@ -83,9 +84,26 @@ var Point = function () {
   }
 
   _createClass(Point, [{
+    key: 'rotate',
+    value: function rotate(angle) {
+      var center = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ORIGIN;
+
+      var sin = Math.sin(angle);
+      var cos = Math.cos(angle);
+      var x = this.x,
+          y = this.y;
+
+      var centerX = center.x;
+      var centerY = center.y;
+      x -= centerX;
+      y -= centerY;
+      this.x = x * cos - y * sin + centerX;
+      this.y = x * sin + y * cos + centerY;
+    }
+  }, {
     key: 'length',
     get: function get() {
-      return Point.distance(this, { x: 0, y: 0 });
+      return Point.distance(this, ORIGIN);
     }
   }]);
 
