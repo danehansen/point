@@ -51,7 +51,7 @@ var d = Point.distace(p, new Point(5, 20));
 [static] Converts a pair of polar coordinates to a Cartesian point coordinate.</li>
 <li><strong>randomPointInCircle</strong>(center:Point, radius:Number):Point <br />
 [static] Returns a random point within a given circle.</li>
-<li><strong>round</strong>(v:Point, increment:Number):Point <br />
+<li><strong>round</strong>(v:Point, increment:Number = 1):Point <br />
 [static] Returns a new point with its x and y values rounded to the nearest increment.</li>
 </ul>
 
@@ -85,6 +85,8 @@ Determines whether two points are equal.</li>
 Scales the line segment between (0,0) and the current point to a set length.</li>
 <li><strong>offset</strong>(dx:Number, dy:Number) <br />
 Offsets the Point object by the specified amount.</li>
+<li><strong>rotate</strong>(angle:Number, center:Point = new Point()) <br />
+Rotates the Point object around a center point by the specified angle.</li>
 <li><strong>setTo</strong>(xa:Number, ya:Number) <br />
 Sets the members of Point to the specified values</li>
 <li><strong>subtract</strong>(v:Point):Boolean <br />

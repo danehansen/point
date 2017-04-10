@@ -7,6 +7,11 @@ function equals(p1, p2) {
   expect(p1.y).to.equal(p2.y)
 }
 
+const TOLERANCE = 0.001
+function roughlyEquals(p1, p2) {
+  equals(Point.round(p1, TOLERANCE), Point.round(p2, TOLERANCE))
+}
+
 describe('constructor', function() {
   it('initiates x and y as 0 with no arguments', function() {
     const p = new Point()
@@ -125,6 +130,43 @@ describe('offset', function() {
   })
 })
 
+describe('rotate', function() {
+  it('rotates point around center', function() {
+    const diff = math.random(5, 10)
+    const origin = new Point(math.random(-diff, diff, true), math.random(-diff, diff, true))
+    const point = new Point(origin.x + diff, origin.y)
+
+    point.rotate(Math.PI * 0.5, origin)
+    roughlyEquals(point, { x: origin.x, y: origin.y + diff })
+
+    point.rotate(Math.PI * 0.5, origin)
+    roughlyEquals(point, { x: origin.x - diff, y: origin.y })
+
+    point.rotate(Math.PI * 0.5, origin)
+    roughlyEquals(point, { x: origin.x, y: origin.y - diff })
+
+    point.rotate(Math.PI * 0.5, origin)
+    roughlyEquals(point, { x: origin.x + diff, y: origin.y })
+  })
+
+  it('rotates point around origin by default', function() {
+    const diff = math.random(5, 10)
+    const point = new Point(diff, 0)
+
+    point.rotate(Math.PI * -0.5)
+    roughlyEquals(point, { x: 0, y: -diff })
+
+    point.rotate(Math.PI * -0.5)
+    roughlyEquals(point, { x: -diff, y: 0 })
+
+    point.rotate(Math.PI * -0.5)
+    roughlyEquals(point, { x: 0, y: diff })
+
+    point.rotate(Math.PI * -0.5)
+    roughlyEquals(point, { x: diff, y: 0 })
+  })
+})
+
 describe('setTo', function() {
   it('sets x and y to values', function() {
     const a = new Point(Math.random(), Math.random())
@@ -197,27 +239,33 @@ describe('static polar', function() {
   it('creates new angle from length and angle', function() {
     const length = 1
     let angle = 0
-    expect(Point.round(Point.polar(length, angle), 0.0001)).to.deep.equal({ x: 1, y: 0 })
+    roughlyEquals(Point.polar(length, angle), { x: 1, y: 0 })
 
     angle = Math.PI * 0.5
-    expect(Point.round(Point.polar(length, angle), 0.0001)).to.deep.equal({ x: 0, y: 1 })
+    roughlyEquals(Point.polar(length, angle), { x: 0, y: 1 })
 
     angle = Math.PI
-    expect(Point.round(Point.polar(length, angle), 0.0001)).to.deep.equal({ x: -1, y: 0 })
+    roughlyEquals(Point.polar(length, angle), { x: -1, y: 0 })
 
     angle = Math.PI * 1.5
-    // expect(Point.round(Point.polar(length, angle), 0.0001)).to.deep.equal({ x: 0, y: -1 })
+    roughlyEquals(Point.polar(length, angle), { x: 0, y: -1 })
 
     angle = Math.PI * 2
-    // expect(Point.round(Point.polar(length, angle), 0.0001)).to.deep.equal({ x: 1, y: 0 })
+    roughlyEquals(Point.polar(length, angle), { x: 1, y: 0 })
   })
 })
 
 describe('static round', function() {
   it('makes a new point with values rounded to nearest increment', function() {
     const a = new Point(2.000001, 3.0000001)
-    const b = Point.round(a, 0.0001)
+    const b = Point.round(a, TOLERANCE)
     equals(b, {x: 2, y: 3})
+  })
+
+  it('makes a new point with values rounded to 1 by default', function() {
+    const a = new Point(math.random(-100, 100), math.random(-100, 100))
+    const b = Point.round(a)
+    equals(b, {x: Math.round(a.x), y: Math.round(a.y)})
   })
 })
 

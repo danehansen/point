@@ -40,7 +40,7 @@ In your browser:
 [static] Converts a pair of polar coordinates to a Cartesian point coordinate.
 * __randomPointInCircle__(center:Point, radius:Number):Point  
 [static] Returns a random point within a given circle.
-* __round__(v:Point, increment:Number):Point  
+* __round__(v:Point, increment:Number = 1):Point  
 [static] Returns a new point with its x and y values rounded to the nearest increment.
 
 ## Public Properties
@@ -70,6 +70,8 @@ Determines whether two points are equal.
 Scales the line segment between (0,0) and the current point to a set length.
 * __offset__(dx:Number, dy:Number)  
 Offsets the Point object by the specified amount.
+* __rotate__(angle:Number, center:Point = new Point())  
+Rotates the Point object around a center point by the specified angle.
 * __setTo__(xa:Number, ya:Number)  
 Sets the members of Point to the specified values
 * __subtract__(v:Point):Boolean  

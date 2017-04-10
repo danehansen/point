@@ -1,5 +1,7 @@
 const { round } = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math') : (((window || {}).danehansen || {}).math || {})
 
+const ORIGIN = { x: 0, y: 0 }
+
 export default class Point {
   static distance(a, b) {
     return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
@@ -45,11 +47,8 @@ export default class Point {
     return random
   }
 
-  static round(point, increment) {
-    return {
-      x: round(point.x, increment),
-      y: round(point.y, increment),
-    }
+  static round(point, increment = 1) {
+    return new Point(round(point.x, increment), round(point.y, increment))
   }
 
   constructor(x = 0, y = 0) {
@@ -78,7 +77,7 @@ export default class Point {
   }
 
   get length() {
-    return Point.distance(this, { x: 0, y: 0 })
+    return Point.distance(this, ORIGIN)
   }
 
   normalize = (thickness) => {
@@ -90,6 +89,18 @@ export default class Point {
   offset = (x, y) => {
     this.x += x
     this.y += y
+  }
+
+  rotate(angle, center = ORIGIN) {
+    const sin = Math.sin(angle)
+    const cos = Math.cos(angle)
+    let { x, y } = this
+    const centerX = center.x
+    const centerY = center.y
+    x -= centerX
+    y -= centerY
+    this.x = x * cos - y * sin + centerX
+    this.y = x * sin + y * cos + centerY
   }
 
   setTo = (x, y) => {

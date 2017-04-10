@@ -1,4 +1,4 @@
 import Point from './index'
-import { putClassOnWindow } from '@danehansen/package-helpers'
+import * as packageHelpers from '@danehansen/package-helpers'
 
-putClassOnWindow(Point, 'Point')
+packageHelpers.putClassOnWindow(Point, 'Point')
