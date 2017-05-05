@@ -1,8 +1,8 @@
-const { round } = typeof __BROWSER__ === 'undefined' ? require('@danehansen/math') : (((window || {}).danehansen || {}).math || {})
+import { round } from '@danehansen/math'
 
 const ORIGIN = { x: 0, y: 0 }
 
-export default class Point {
+class Point {
   static distance(a, b) {
     return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
   }
@@ -117,3 +117,5 @@ export default class Point {
     return `{x: ${this.x}, y: ${this.y}}`
   }
 }
+
+module.exports = Point
