@@ -205,8 +205,18 @@ describe('Point', function() {
 
   describe('static distance', function() {
     it('finds distance between 2 points', function() {
-      expect(Point.distance({x: 0, y: 0}, {x: 0, y: 2})).to.equal(2)
-      expect(Point.distance({x: 2, y: 0}, {x: 0, y: 0})).to.equal(2)
+      const pointA = {
+        x: math.random(-100, 100),
+        y: math.random(-100, 100),
+      }
+      const dist = math.random(1, 10)
+      const angle = math.random(Math.PI * 2)
+      const pointB = {
+        x: pointA.x + Math.cos(angle) * dist,
+        y: pointA.y + Math.sin(angle) * dist,
+      }
+      const precision = 10000
+      expect(math.round(Point.distance(pointA, pointB), precision)).to.equal(math.round(dist, precision))
     })
   })
 
