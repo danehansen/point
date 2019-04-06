@@ -1,35 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <title>Point</title>
-    <link href='https://danehansen.github.io/package-helpers/styles.css' rel='stylesheet' />
+    <meta charset="utf-8" />
+    <title>point</title>
+    <style>
+      body {
+  background-color: #fff;
+  color: #000;
+  font-family: Helvetica, Arial;
+  font-size: 12px;
+  padding: 50px;
+}
+
+body > div {
+  margin-top: 30px;
+  padding: 20px 0;
+  width: 600px;
+}
+
+body > div,
+footer {
+  border-top: 1px solid #000;
+}
+
+footer {
+  padding-top: 20px;
+}
+
+    </style>
   </head>
   <body>
-<h1>Point</h1>
-
-<p><strong>Class</strong> : public class <a href="https://github.com/danehansen/Point">Point</a> <br />
-<strong>Inheritance</strong> : <a href="https://github.com/danehansen/Point">Point</a> > Object</p>
-
+    <h1>Point <img src="https://img.shields.io/bundlephobia/minzip/@danehansen/point.svg" alt="npm bundle size (scoped)" /> <img src="https://img.shields.io/npm/dt/@danehansen/point.svg" alt="npm" /></h1>
+<p><strong>Class</strong> : public class <a href="https://github.com/danehansen/Point">Point</a><br />
+<strong>Inheritance</strong> : <a href="https://github.com/danehansen/Point">Point</a> &gt; Object</p>
 <p>The Point object represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis. Mostly based on the AS3 Point class, but with some added features/useless ones removed.</p>
-
 <h2>Installation</h2>
-
 <p><code>npm install --save @danehansen/point</code></p>
-
 <h2>Usage</h2>
-
 <p>As a module:</p>
-
 <pre><code>import Point from '@danehansen/point';
 
 var p = new Point(50, 75);
 p.setTo(25, 75);
 var d = Point.distace(p, new Point(5, 20));
 </code></pre>
-
 <p>In your browser:</p>
-
 <pre><code>&lt;script src='danehansen-Point.min.js'&gt;&lt;/script&gt;
 &lt;script&gt;
   var Point = window.danehansen.Point;
@@ -37,62 +52,57 @@ var d = Point.distace(p, new Point(5, 20));
   p.add(new Point(5, 6));
 &lt;/script&gt;
 </code></pre>
-
 <h2>Public Static Methods</h2>
-
 <ul>
-<li><strong>distance</strong>(pt1:Point, pt2:Point):Number <br />
+<li><strong>distance</strong>(pt1:Point, pt2:Point):Number<br />
 [static] Returns the distance between pt1 and pt2.</li>
-<li><strong>interpolate</strong>(pt1:Point, pt2:Point, f:Number):Point <br />
+<li><strong>interpolate</strong>(pt1:Point, pt2:Point, f:Number):Point<br />
 [static] Determines a point between two specified points.</li>
-<li><strong>intersection</strong>(aStart:Point, aEnd:Point, bStart:Point, bEnd:Point):Point <br />
+<li><strong>intersection</strong>(aStart:Point, aEnd:Point, bStart:Point, bEnd:Point):Point<br />
 [static] Returns a point where to traveling points intersect, or null if never.</li>
-<li><strong>polar</strong>(len:Number, angle:Number):Point <br />
+<li><strong>polar</strong>(len:Number, angle:Number):Point<br />
 [static] Converts a pair of polar coordinates to a Cartesian point coordinate.</li>
-<li><strong>randomPointInCircle</strong>(center:Point, radius:Number):Point <br />
+<li><strong>randomPointInCircle</strong>(center:Point, radius:Number):Point<br />
 [static] Returns a random point within a given circle.</li>
-<li><strong>round</strong>(v:Point, increment:Number = 1):Point <br />
+<li><strong>round</strong>(v:Point, increment:Number = 1):Point<br />
 [static] Returns a new point with its x and y values rounded to the nearest increment.</li>
 </ul>
-
 <h2>Public Properties</h2>
-
 <ul>
-<li><strong>length</strong>() : Number <br />
+<li><strong>length</strong>() : Number<br />
 [read-only] Gets the length of the line segment from (0,0) to this point.</li>
-<li><strong>x</strong> : Number <br />
+<li><strong>x</strong> : Number<br />
 The horizontal coordinate of the point.</li>
-<li><strong>y</strong> : Number <br />
+<li><strong>y</strong> : Number<br />
 The vertical coordinate of the point.</li>
 </ul>
-
 <h2>Public Methods</h2>
-
 <ul>
-<li><strong>Point</strong>(x:Number = 0, y:Number = 0) <br />
+<li><strong>Point</strong>(x:Number = 0, y:Number = 0)<br />
 Creates a new point.</li>
-<li><strong>add</strong>(v:Point):Point <br />
+<li><strong>add</strong>(v:Point):Point<br />
 Adds the coordinates of another point to the coordinates of this point to create a new point.</li>
-<li><strong>angle</strong>():Number <br />
+<li><strong>angle</strong>():Number<br />
 Returns the angle in radians of this point from (0,0).</li>
-<li><strong>clone</strong>():Point <br />
+<li><strong>clone</strong>():Point<br />
 Creates a copy of this Point object.</li>
-<li><strong>copyFrom</strong>(sourcePoint:Point) <br />
+<li><strong>copyFrom</strong>(sourcePoint:Point)<br />
 Copies all of the point data from the source Point object into the calling Point object.</li>
-<li><strong>equals</strong>(toCompare:Point):Boolean <br />
+<li><strong>equals</strong>(toCompare:Point):Boolean<br />
 Determines whether two points are equal.</li>
-<li><strong>normalize</strong>(thicknes:Number) <br />
+<li><strong>normalize</strong>(thicknes:Number)<br />
 Scales the line segment between (0,0) and the current point to a set length.</li>
-<li><strong>offset</strong>(dx:Number, dy:Number) <br />
+<li><strong>offset</strong>(dx:Number, dy:Number)<br />
 Offsets the Point object by the specified amount.</li>
-<li><strong>rotate</strong>(angle:Number, center:Point = new Point()) <br />
+<li><strong>rotate</strong>(angle:Number, center:Point = new Point())<br />
 Rotates the Point object around a center point by the specified angle.</li>
-<li><strong>setTo</strong>(xa:Number, ya:Number) <br />
+<li><strong>setTo</strong>(xa:Number, ya:Number)<br />
 Sets the members of Point to the specified values</li>
-<li><strong>subtract</strong>(v:Point):Boolean <br />
+<li><strong>subtract</strong>(v:Point):Boolean<br />
 Subtracts the coordinates of another point from the coordinates of this point to create a new point.</li>
-<li><strong>toString</strong>():String <br />
+<li><strong>toString</strong>():String<br />
 Returns a string that contains the values of the x and y coordinates.</li>
 </ul>
+    <script></script>
   </body>
 </html>
