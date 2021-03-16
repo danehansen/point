@@ -1,121 +1,82 @@
-import { round } from '@danehansen/math'
+import { round as mathRound } from '@danehansen/math'
 
-const ORIGIN = { x: 0, y: 0 }
-
-class Point {
-  static distance(a, b) {
-    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
-  }
-
-  static interpolate(start, end, amount) {
-    return new Point(start.x + (end.x - start.x) * amount, start.y + (end.y - start.y) * amount)
-  }
-
-  static intersection(startA, endA, startB, endB) {
-    const x1 = startA.x
-    const y1 = startA.y
-    const x2 = endA.x
-    const y2 = endA.y
-    const x3 = startB.x
-    const y3 = startB.y
-    const x4 = endB.x
-    const y4 = endB.y
-    const a = x1 - x2
-    const b = y3 - y4
-    const c = y1 - y2
-    const d = x3 - x4
-    const e = a * b - c * d
-    if (e === 0) {
-      return null
-    }
-    const f = x1 * y2 - y1 * x2
-    const g = x3 * y4 - y3 * x4
-    return new Point((f * d - a * g) / e, (f * b - c * g) / e)
-  }
-
-  static polar(len, angle) {
-    return new Point(Math.cos(angle) * len, Math.sin(angle) * len)
-  }
-
-  static randomPointInCircle(center, radius) {
-    const random = {}
-    do {
-      random.x = Math.random() * radius * 2 + center.x - radius
-      random.y = Math.random() * radius * 2 + center.y - radius
-    }
-    while(Point.distance(random, center) > radius)
-    return random
-  }
-
-  static round(point, increment = 1) {
-    return new Point(round(point.x, increment), round(point.y, increment))
-  }
-
-  constructor(x = 0, y = 0) {
-    this.x = x
-    this.y = y
-  }
-
-  add = (point) => {
-    this.offset(point.x, point.y)
-  }
-
-  angle = () => {
-    return Math.atan2(this.y, this.x)
-  }
-
-  clone = () => {
-    return new Point(this.x, this.y)
-  }
-
-  copyFrom = (point) => {
-    this.setTo(point.x, point.y)
-  }
-
-  equals = (point) => {
-    return this.x === point.x && this.y === point.y
-  }
-
-  get length() {
-    return Point.distance(this, ORIGIN)
-  }
-
-  normalize = (thickness) => {
-    const ratio = thickness / this.length
-    this.x *= ratio
-    this.y *= ratio
-  }
-
-  offset = (x, y) => {
-    this.x += x
-    this.y += y
-  }
-
-  rotate(angle, center = ORIGIN) {
-    const sin = Math.sin(angle)
-    const cos = Math.cos(angle)
-    let { x, y } = this
-    const centerX = center.x
-    const centerY = center.y
-    x -= centerX
-    y -= centerY
-    this.x = x * cos - y * sin + centerX
-    this.y = x * sin + y * cos + centerY
-  }
-
-  setTo = (x, y) => {
-    this.x = x
-    this.y = y
-  }
-
-  subtract = (point) => {
-    this.x -= point.x
-    this.y -= point.y
-  }
-
-  toString = () => {
-    return `{x: ${this.x}, y: ${this.y}}`
-  }
+export function add(a, b) {
+  return {x: a.x + b.x, y: a.y + b.y};
 }
 
-module.exports = Point
+export function angle(point) {
+  return Math.atan2(point.y, point.x);
+}
+
+export function distance(a, b) {
+  return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+}
+
+export function interpolate(start, end, amount) {
+  return {x: start.x + (end.x - start.x) * amount, y: start.y + (end.y - start.y) * amount};
+}
+
+export function intersection(startA, endA, startB, endB) {
+  const x1 = startA.x
+  const y1 = startA.y
+  const x2 = endA.x
+  const y2 = endA.y
+  const x3 = startB.x
+  const y3 = startB.y
+  const x4 = endB.x
+  const y4 = endB.y
+  const a = x1 - x2
+  const b = y3 - y4
+  const c = y1 - y2
+  const d = x3 - x4
+  const e = a * b - c * d
+  if (e === 0) {
+    return null
+  }
+  const f = x1 * y2 - y1 * x2
+  const g = x3 * y4 - y3 * x4
+  return {x: (f * d - a * g) / e, y:(f * b - c * g) / e};
+}
+
+export function length(point) {
+  return distance(point, { x: 0, y: 0 });
+}
+
+export function normalize(point, thickness) {
+  const l = length(point);
+  const ratio = thickness / l;
+  return {x: point.x * ratio, y: point.y * ratio};
+}
+
+export function polar(len, angle) {
+  return {x: Math.cos(angle) * len, y: Math.sin(angle) * len};
+}
+
+export function randomPointInCircle(center, radius) {
+  const random = {}
+  do {
+    random.x = Math.random() * radius * 2 + center.x - radius;
+    random.y = Math.random() * radius * 2 + center.y - radius;
+  }
+  while(distance(random, center) > radius)
+  return random;
+}
+
+export function rotate(point, angle, center = {x: 0, y: 0}) {
+  const sin = Math.sin(angle);
+  const cos = Math.cos(angle);
+  let { x, y } = point;
+  const centerX = center.x;
+  const centerY = center.y;
+  x -= centerX;
+  y -= centerY;
+  return {x: x * cos - y * sin + centerX, y: x * sin + y * cos + centerY};
+}
+
+export function round(point, increment = 1) {
+  return {x: mathRound(point.x, increment), y: mathRound(point.y, increment)};
+}
+
+export function toString(point) {
+  return `{x: ${point.x}, y: ${point.y}}`
+}

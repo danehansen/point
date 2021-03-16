@@ -1,8 +1,8 @@
 {
   "name": "@danehansen/point",
-  "version": "0.2.7",
+  "version": "1.0.0",
   "description": "point",
-  "main": "danehansen-Point.min.js",
+  "main": "danehansen-point.min.js",
   "scripts": {
     "buildindex": "package-helpers-buildindex srcHtml=./src/index.html srcReadme=./README.md dest=./index.html",
     "max": "webpack",
@@ -32,10 +32,10 @@
     "webpack": "^2.5.0"
   },
   "dependencies": {
-    "@danehansen/math": "^0.3.3"
+    "@danehansen/math": "^1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danehansen/Point"
+    "url": "https://github.com/danehansen/point"
   }
 }

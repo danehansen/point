@@ -32,77 +32,52 @@ footer {
     </style>
   </head>
   <body>
-    <h1>Point <img src="https://img.shields.io/bundlephobia/minzip/@danehansen/point.svg" alt="npm bundle size (scoped)" /> <img src="https://img.shields.io/npm/dt/@danehansen/point.svg" alt="npm" /></h1>
-<p><strong>Class</strong> : public class <a href="https://github.com/danehansen/Point">Point</a><br />
-<strong>Inheritance</strong> : <a href="https://github.com/danehansen/Point">Point</a> &gt; Object</p>
-<p>The Point object represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis. Mostly based on the AS3 Point class, but with some added features/useless ones removed.</p>
+    <h1>point <img src="https://img.shields.io/bundlephobia/minzip/@danehansen/point.svg" alt="npm bundle size (scoped)" /> <img src="https://img.shields.io/npm/dt/@danehansen/point.svg" alt="npm" /></h1>
+<p>The point library contains a collection of functions for dealing with points with numerical x and y values.</p>
 <h2>Installation</h2>
 <p><code>npm install --save @danehansen/point</code></p>
 <h2>Usage</h2>
 <p>As a module:</p>
-<pre><code>import Point from '@danehansen/point';
+<pre><code>import * as point from '@danehansen/point';
 
-var p = new Point(50, 75);
-p.setTo(25, 75);
-var d = Point.distace(p, new Point(5, 20));
+var p1 = {x: 50, y: 75};
+var p2 = point.add(p1, {x: 5, y: 5});
+var d = point.distance(p1, p2);
 </code></pre>
 <p>In your browser:</p>
-<pre><code>&lt;script src='danehansen-Point.min.js'&gt;&lt;/script&gt;
+<pre><code>&lt;script src='danehansen-point.min.js'&gt;&lt;/script&gt;
 &lt;script&gt;
-  var Point = window.danehansen.Point;
-  var p = new Point(3, 4);
-  p.add(new Point(5, 6));
+  var point = window.danehansen.point;
+  var p1 = {x: 50, y: 75};
+  var p2 = point.add(p1, {x: 5, y: 5});
+  var d = point.distance(p1, p2);
 &lt;/script&gt;
 </code></pre>
-<h2>Public Static Methods</h2>
+<h2>Methods</h2>
 <ul>
-<li><strong>distance</strong>(pt1:Point, pt2:Point):Number<br />
-[static] Returns the distance between pt1 and pt2.</li>
-<li><strong>interpolate</strong>(pt1:Point, pt2:Point, f:Number):Point<br />
-[static] Determines a point between two specified points.</li>
-<li><strong>intersection</strong>(aStart:Point, aEnd:Point, bStart:Point, bEnd:Point):Point<br />
-[static] Returns a point where to traveling points intersect, or null if never.</li>
-<li><strong>polar</strong>(len:Number, angle:Number):Point<br />
-[static] Converts a pair of polar coordinates to a Cartesian point coordinate.</li>
-<li><strong>randomPointInCircle</strong>(center:Point, radius:Number):Point<br />
-[static] Returns a random point within a given circle.</li>
-<li><strong>round</strong>(v:Point, increment:Number = 1):Point<br />
-[static] Returns a new point with its x and y values rounded to the nearest increment.</li>
-</ul>
-<h2>Public Properties</h2>
-<ul>
-<li><strong>length</strong>() : Number<br />
-[read-only] Gets the length of the line segment from (0,0) to this point.</li>
-<li><strong>x</strong> : Number<br />
-The horizontal coordinate of the point.</li>
-<li><strong>y</strong> : Number<br />
-The vertical coordinate of the point.</li>
-</ul>
-<h2>Public Methods</h2>
-<ul>
-<li><strong>Point</strong>(x:Number = 0, y:Number = 0)<br />
-Creates a new point.</li>
-<li><strong>add</strong>(v:Point):Point<br />
-Adds the coordinates of another point to the coordinates of this point to create a new point.</li>
-<li><strong>angle</strong>():Number<br />
-Returns the angle in radians of this point from (0,0).</li>
-<li><strong>clone</strong>():Point<br />
-Creates a copy of this Point object.</li>
-<li><strong>copyFrom</strong>(sourcePoint:Point)<br />
-Copies all of the point data from the source Point object into the calling Point object.</li>
-<li><strong>equals</strong>(toCompare:Point):Boolean<br />
+<li><strong>add</strong>(pt1:Object, pt2:Object):Object<br />
+Returns a new point equal to sum of two points.</li>
+<li><strong>angle</strong>(point:Object):Number<br />
+Returns the angle in radians of a point from (0,0).</li>
+<li><strong>distance</strong>(pt1:Object, pt2:Object):Number<br />
+Returns the distance between pt1 and pt2.</li>
+<li><strong>interpolate</strong>(pt1:Object, pt2:Object, f:Number):Object<br />
+Determines a point between two specified points.</li>
+<li><strong>intersection</strong>(aStart:Object, aEnd:Object, bStart:Object, bEnd:Object):Object<br />
+Returns a point where to traveling points intersect, or null if never.</li>
+<li><strong>isEqual</strong>(pt1:Object, pt2:Object):Boolean<br />
 Determines whether two points are equal.</li>
-<li><strong>normalize</strong>(thicknes:Number)<br />
-Scales the line segment between (0,0) and the current point to a set length.</li>
-<li><strong>offset</strong>(dx:Number, dy:Number)<br />
-Offsets the Point object by the specified amount.</li>
-<li><strong>rotate</strong>(angle:Number, center:Point = new Point())<br />
-Rotates the Point object around a center point by the specified angle.</li>
-<li><strong>setTo</strong>(xa:Number, ya:Number)<br />
-Sets the members of Point to the specified values</li>
-<li><strong>subtract</strong>(v:Point):Boolean<br />
-Subtracts the coordinates of another point from the coordinates of this point to create a new point.</li>
-<li><strong>toString</strong>():String<br />
+<li><strong>normalize</strong>(point:Object, thicknes:Number)<br />
+Returns a new point scaled from the line segment between (0,0) and a point to a set length.</li>
+<li><strong>polar</strong>(len:Number, angle:Number):Object<br />
+Converts a pair of polar coordinates to a Cartesian point coordinate.</li>
+<li><strong>randomPointInCircle</strong>(center:Object, radius:Number):Object<br />
+Returns a random point within a given circle.</li>
+<li><strong>rotate</strong>(point:Object, angle:Number, center:Object = {x: 0, y: 0})<br />
+Returns a new point rotated around a center point by the specified angle.</li>
+<li><strong>round</strong>(v:Object, increment:Number = 1):Object<br />
+Returns a new point with its x and y values rounded to the nearest increment.</li>
+<li><strong>toString</strong>(point:Object):String<br />
 Returns a string that contains the values of the x and y coordinates.</li>
 </ul>
     <script></script>

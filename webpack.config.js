@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    app: './src/Point.js',
+    app: './src/point.js',
   },
   module: {
     rules: [
@@ -14,8 +14,8 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'danehansen-Point.min.js',
-    library: ['danehansen', 'Point'],
+    filename: 'danehansen-point.min.js',
+    library: ['danehansen', 'point'],
     libraryTarget: 'umd',
   },
   externals: [

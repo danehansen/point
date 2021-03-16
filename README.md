@@ -1,9 +1,6 @@
-# Point ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@danehansen/point.svg) ![npm](https://img.shields.io/npm/dt/@danehansen/point.svg)
+# point ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@danehansen/point.svg) ![npm](https://img.shields.io/npm/dt/@danehansen/point.svg)
 
-**Class** : public class [Point](https://github.com/danehansen/Point)  
-**Inheritance** : [Point](https://github.com/danehansen/Point) > Object
-
-The Point object represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis. Mostly based on the AS3 Point class, but with some added features/useless ones removed.
+The point library contains a collection of functions for dealing with points with numerical x and y values.
 
 ## Installation
 
@@ -13,68 +10,45 @@ The Point object represents a location in a two-dimensional coordinate system, w
 
 As a module:
 
-    import Point from '@danehansen/point';
+    import * as point from '@danehansen/point';
 
-    var p = new Point(50, 75);
-    p.setTo(25, 75);
-    var d = Point.distace(p, new Point(5, 20));
+    var p1 = {x: 50, y: 75};
+    var p2 = point.add(p1, {x: 5, y: 5});
+    var d = point.distance(p1, p2);
 
 In your browser:
 
-    <script src='danehansen-Point.min.js'></script>
+    <script src='danehansen-point.min.js'></script>
     <script>
-      var Point = window.danehansen.Point;
-      var p = new Point(3, 4);
-      p.add(new Point(5, 6));
+      var point = window.danehansen.point;
+      var p1 = {x: 50, y: 75};
+      var p2 = point.add(p1, {x: 5, y: 5});
+      var d = point.distance(p1, p2);
     </script>
 
-## Public Static Methods
+## Methods
 
-- **distance**(pt1:Point, pt2:Point):Number  
-  [static] Returns the distance between pt1 and pt2.
-- **interpolate**(pt1:Point, pt2:Point, f:Number):Point  
-  [static] Determines a point between two specified points.
-- **intersection**(aStart:Point, aEnd:Point, bStart:Point, bEnd:Point):Point  
-  [static] Returns a point where to traveling points intersect, or null if never.
-- **polar**(len:Number, angle:Number):Point  
-  [static] Converts a pair of polar coordinates to a Cartesian point coordinate.
-- **randomPointInCircle**(center:Point, radius:Number):Point  
-  [static] Returns a random point within a given circle.
-- **round**(v:Point, increment:Number = 1):Point  
-  [static] Returns a new point with its x and y values rounded to the nearest increment.
-
-## Public Properties
-
-- **length**() : Number  
-  [read-only] Gets the length of the line segment from (0,0) to this point.
-- **x** : Number  
-  The horizontal coordinate of the point.
-- **y** : Number  
-  The vertical coordinate of the point.
-
-## Public Methods
-
-- **Point**(x:Number = 0, y:Number = 0)  
-  Creates a new point.
-- **add**(v:Point):Point  
-  Adds the coordinates of another point to the coordinates of this point to create a new point.
-- **angle**():Number  
-  Returns the angle in radians of this point from (0,0).
-- **clone**():Point  
-  Creates a copy of this Point object.
-- **copyFrom**(sourcePoint:Point)  
-  Copies all of the point data from the source Point object into the calling Point object.
-- **equals**(toCompare:Point):Boolean  
+- **add**(pt1:Object, pt2:Object):Object  
+Returns a new point equal to sum of two points.
+- **angle**(point:Object):Number  
+Returns the angle in radians of a point from (0,0).
+- **distance**(pt1:Object, pt2:Object):Number  
+  Returns the distance between pt1 and pt2.
+- **interpolate**(pt1:Object, pt2:Object, f:Number):Object  
+  Determines a point between two specified points.
+- **intersection**(aStart:Object, aEnd:Object, bStart:Object, bEnd:Object):Object  
+  Returns a point where to traveling points intersect, or null if never.
+- **isEqual**(pt1:Object, pt2:Object):Boolean  
   Determines whether two points are equal.
-- **normalize**(thicknes:Number)  
-  Scales the line segment between (0,0) and the current point to a set length.
-- **offset**(dx:Number, dy:Number)  
-  Offsets the Point object by the specified amount.
-- **rotate**(angle:Number, center:Point = new Point())  
-  Rotates the Point object around a center point by the specified angle.
-- **setTo**(xa:Number, ya:Number)  
-  Sets the members of Point to the specified values
-- **subtract**(v:Point):Boolean  
-  Subtracts the coordinates of another point from the coordinates of this point to create a new point.
-- **toString**():String  
+- **normalize**(point:Object, thicknes:Number)  
+  Returns a new point scaled from the line segment between (0,0) and a point to a set length.
+- **polar**(len:Number, angle:Number):Object  
+  Converts a pair of polar coordinates to a Cartesian point coordinate.
+- **randomPointInCircle**(center:Object, radius:Number):Object  
+  Returns a random point within a given circle.
+- **rotate**(point:Object, angle:Number, center:Object = {x: 0, y: 0})  
+  Returns a new point rotated around a center point by the specified angle.
+- **round**(v:Object, increment:Number = 1):Object  
+  Returns a new point with its x and y values rounded to the nearest increment.
+- **toString**(point:Object):String  
   Returns a string that contains the values of the x and y coordinates.
