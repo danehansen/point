@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   entry: {
     app: './src/point.js',
@@ -17,6 +19,7 @@ module.exports = {
     filename: 'danehansen-point.min.js',
     library: ['danehansen', 'point'],
     libraryTarget: 'umd',
+    path: __dirname,
   },
   externals: [
     {
